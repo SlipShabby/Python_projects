@@ -49,10 +49,13 @@ font1 =pygame.font.SysFont('Ariel',80)
 
 # draw a screen window and fill it with color
 def draw_window():
-    WIN.fill(BLACK)
+    WIN.fill(WHITE)
     # WIN.blit(image1, (300,300))
-    first_num = font1.render('2048', 1, WHITE)
-    WIN.blit(first_num, (10, 10))
+    first_num = font1.render('2048', 1, BLACK)
+    score = font1.render('Score:',1, BLACK)
+    WIN.blit(first_num, (400 - first_num.get_width()/2, 10))
+    WIN.blit(score, (400 - score.get_width(), 800))
+
   
 
 # draw grid (4 x 4) and initialize array to store the values
@@ -64,7 +67,7 @@ def draw_grid():
         for y in range(4):
             grid[x].append([])
             rect = pygame.Rect(x*grid_size + MARGIN, y*grid_size + MARGIN, grid_size, grid_size)
-            pygame.draw.rect(WIN, WHITE, rect,10)
+            pygame.draw.rect(WIN, BLACK, rect,10)
     # test value
     
     # return x,y
