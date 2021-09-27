@@ -77,9 +77,6 @@ class Logic2048:
         # set place for information screen + 150
         self.screen = pygame.display.set_mode((self.w, self.h+self.info_screen))
 
-
-    def __str__(self):
-        return str(self.grid)
     
     # insert k new numbers in random positions 
     def new_num(self, k = 1):
@@ -94,25 +91,25 @@ class Logic2048:
                 self.grid[pos] = 2
 
     # helper function to sum matching numbers
-    def _get_nums(self, this):
-        this_n = this[this!=0]
-        this_n_sum = []
+    def _get_nums(self, state):
+        new_state = state[state!=0]
+        sum = []
         skip = False
         # delta = 0
      
-        for j in range(len(this_n)):
+        for j in range(len(new_state)):
             if skip:
                 skip = False
                 continue
-            if j != len(this_n)-1 and this_n[j] == this_n[j+1]:
-                new_n = this_n[j] *2
+            if j != len(new_state)-1 and new_state[j] == new_state[j+1]:
+                new_num = new_state[j]*2
                 skip = True
                 # delta += new_n
             else:
-                new_n =this_n[j]
-            this_n_sum.append(new_n)
+                new_num =new_state[j]
+            sum.append(new_num)
         
-        return np.array(this_n_sum)
+        return np.array(sum)
 
                         
         
@@ -198,11 +195,11 @@ class Logic2048:
     
 
     def game_over(self):
-        grid_bu = self.grid.copy()
-        for move in 'lrud':
-            self.make_move(move)
-            if not all((self.grid == grid_bu).flatten()):
-                self.grid = grid_bu
+        state = self.grid.copy()
+        for cmd in 'lrud':
+            self.make_move(cmd)
+            if not all((self.grid == state).flatten()):
+                self.grid = state
                 return False
         return True
 
@@ -232,11 +229,11 @@ class Logic2048:
             # print(game.grid)
         
             
-            # if self.game_over():
-            #     print('GAME OVER!')
-            #     # create fn to draw game over screen
-            #     # self.last_screen()
-            #     break
+            if self.game_over():
+                print('GAME OVER!')
+                # create fn to draw game over screen
+                # self.last_screen()
+                break
 
             if not all((self.grid == previous_grid).flatten()):
                 self.new_num()
