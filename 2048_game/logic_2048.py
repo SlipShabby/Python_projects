@@ -98,13 +98,16 @@ class Logic2048:
         # delta = 0
      
         for j in range(len(new_state)):
+            new_num =0
             if skip:
                 skip = False
                 continue
             if j != len(new_state)-1 and new_state[j] == new_state[j+1]:
                 new_num = new_state[j]*2
                 skip = True
-                # delta += new_n
+                print(new_num, self.score)
+                self.score += new_num
+                print(self.score)
             else:
                 new_num =new_state[j]
             sum.append(new_num)
@@ -168,9 +171,11 @@ class Logic2048:
         INFO_SCREEN = pygame.Rect(0,0, self.w, 120)
         pygame.draw.rect(self.screen, WHITE, INFO_SCREEN)
         # Score sign font, color, position
-        font_score = pygame.font.SysFont('simsum', 50)
-        text_score = font_score.render('Score: ', True, (255,127,0))
+        font_score = pygame.font.SysFont('Ariel', 70)
+        text_score = font_score.render('Score: ', True, (255,150,50))
+        text_total = font_score.render(f'{self.score}', True, (255,150,50))
         self.screen.blit(text_score, (30,30))
+        self.screen.blit(text_total, (200,30))
 
         # define grid and coords of cells to draw
         for x in range(4):
