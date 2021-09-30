@@ -69,6 +69,7 @@ class My2048:
             for i in range(0,len(numbers)-1):
                 if numbers[i] == numbers[i+1]:
                     numbers[i]*=2
+                    self.score +=numbers[i]
                     new_numbers = np.delete(numbers,i+1)
                 else:
                     continue
@@ -108,9 +109,10 @@ class My2048:
         INFO_SCREEN = pygame.Rect(0,0, self.w, 120)
         pygame.draw.rect(self.screen, COLORS.WHITE, INFO_SCREEN)
         # Score sign font, color, position
-        font_score = pygame.font.SysFont(COLORS.SCORE_FONT, 50)
-        text_score = font_score.render('Score: ', True, (255,150,50))
-        text_total = font_score.render(f'{self.score}', True, (255,150,50))
+        font_score_label = pygame.font.SysFont(*COLORS.SCORE_LABEL_FONT)
+        font_score = pygame.font.SysFont(*COLORS.SCORE_FONT)
+        text_score = font_score_label.render('Score: ', True, COLORS.SCORE_LABEL)
+        text_total = font_score.render(f'{self.score}', True, COLORS.SCORE)
         self.screen.blit(text_score, (30,30))
         self.screen.blit(text_total, (200,30))
 
@@ -131,7 +133,7 @@ class My2048:
                                 border_radius = 5)
                 if cell == 0:
                     continue
-                text_surface = self.myfont.render(f'{cell}', True, (0,0,0))
+                text_surface = self.myfont.render(f'{cell}', True, COLORS.CELL_NUMBER_COLORS[cell])
                 text_rect = text_surface.get_rect(center = (cell_x+cell_w/2, cell_y+cell_h/2))
                 self.screen.blit(text_surface, text_rect)
 
