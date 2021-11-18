@@ -3,12 +3,16 @@ import numpy as np
 import random
 import pygame
 from pygame.locals import *
+
+# import file with color pallet
 import colors as COLORS
 
-N = 4
-BEST_SCORE = 0
+# global vars
+N = 4               # grid size
+BEST_SCORE = 0      # store best score of the user
 
 
+# create class
 class My2048:
 
     def __init__(self):
@@ -112,7 +116,7 @@ class My2048:
         font_score_label = pygame.font.SysFont(*COLORS.SCORE_LABEL_FONT)
         font_score = pygame.font.SysFont(*COLORS.SCORE_FONT)
         text_score = font_score_label.render('Score: ', True, COLORS.SCORE_LABEL)
-        text_total = font_score.render(f'{self.score}', True, COLORS.SCORE)
+        text_total = font_score.render(f'{self.score}', True, COLORS.SCORE)#
         self.screen.blit(text_score, (30,30))
         self.screen.blit(text_total, (200,30))
 

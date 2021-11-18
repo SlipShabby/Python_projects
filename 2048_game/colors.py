@@ -9,6 +9,8 @@ BEST_BLOCK = "#bbada0"
 GAME_OVER_FONT = ("Helvetica Neue", 48, "bold")
 GAME_OVER_FONT_COLOR = "#ffffff"
 WINNER_BG = "#ffcc00"
+
+
 LOSER_BG = "#a39489"
 
 WHITE = (255,255,255)
