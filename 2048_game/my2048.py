@@ -12,6 +12,8 @@ N = 4               # grid size
 BEST_SCORE = 0      # store best score of the user
 
 
+
+
 # create class
 class My2048:
 
